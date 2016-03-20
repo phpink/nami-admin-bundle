@@ -1,0 +1,151 @@
+<div ng-show="model">
+    <h3><a href="#/app/profiles">Gérer les pages</a> > <a href="#/app/pages/{{ model.getId() }}">{{ model.getSlug() }}</a></h3>
+    <div class="panel panel-primary" data-ng-init="refresh()" ng-class="{csspinner:refreshing}">
+        <div class="panel-heading">
+            <span ng-show="model.getId()">{{ model.getTitle() }}</span>
+            <span ng-hide="model.getId()">Nouvelle page</span>
+            <paneltool ng-show="model.getId()" class="pull-right" tool-refresh="refresh()"></paneltool>
+        </div>
+
+        <div class="panel-body">
+            <tabset>
+                <tab>
+                    <tab-heading><i class="icon-puzzle"></i> Blocs</tab-heading>
+                    <div>
+                        <div class="clearfix" style="margin-bottom: 10px">
+                            <button class="pull-right btn btn-primary" ng-click="addBlock()">Créer un bloc</button>
+                        </div>
+                        <div ng-repeat="block in model.data.blocks" data-id="{{ block.id }}">
+                            <div id="blockCollapse[block.uuid]" class="page-block panel panel-primary">
+                                <div class="panel-heading panel-heading-condensed">
+                                    Bloc #{{ block.position + 1 }}
+                                    <paneltool class="pull-right" tool-collapse="collapse" tool-dismiss>
+                                    </paneltool>
+                                </div>
+                                <div collapse="blockCollapse[block.uuid]" class="panel-body">
+                                    <div class="row">
+                                        <div class="col-sm-8">
+                                            <span class="label label-primary pull-right">{{ block.id }}</span>
+                                            <form class="form-horizontal">
+                                                <div class="form-group">
+                                                    <label class="col-lg-1 control-label">Titre</label>
+                                                    <div class="col-lg-11">
+                                                        <input placeholder="Titre" class="form-control" type="text" ng-model="block.title">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="col-lg-1 control-label">Contenu</label>
+                                                    <div class="col-lg-11 mb-editor">
+                                                        <textarea  ng-wig="block.content" placeholder="Contenu"></textarea>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="clearfix relative">
+                                                <button class="pull-right btn btn-primary">
+                                                    <span class="icon-picture"></span> Ajouter une image
+                                                </button>
+                                                <input type="file" data-folder="block" data-id="{{ block.id }}" class="image-file-field" name="block-images[]" onchange="angular.element(this).scope().upload(this)">
+                                            </div>
+                                            <ul class="mt cleared media-list" ng-repeat="image in block._references.images">
+                                                <li class="media">
+                                                    <a href="#" class="thumbnail">
+                                                        <img src="{{ image.thumbs.preview }}" ng-show="image.url" class="img-responsive block-center">
+                                                    </a>
+                                                    <button type="button" data-folder="block" data-upload-id="{{ image.id }}" data-id="{{ block.id }}" ng-click="removeUpload($event)" class="close">
+                                                        <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                                                    </button>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </tab>
+                <tab>
+                    <tab-heading><i class="icon-info"></i> Détails</tab-heading>
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <form class="form-horizontal">
+                                <div class="form-group">
+                                    <label class="col-lg-2 control-label">Title</label>
+                                    <div class="col-lg-10">
+                                        <input placeholder="Titre" class="form-control" type="text" ng-model="model.data.title">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-2 control-label">Url</label>
+                                    <div class="col-lg-10">
+                                        <input placeholder="Url" class="form-control" type="text" ng-model="model.data.slug">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-2 control-label">Meta Description</label>
+                                    <div class="col-lg-10">
+                                        <input placeholder="Description" class="form-control" type="text" ng-model="model.data.metaDescription">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-2 control-label">Meta Keywords</label>
+                                    <div class="col-lg-10">
+                                        <input placeholder="Keywords" class="form-control" type="text" ng-model="model.data.metaKeywords">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-2 control-label">Actif</label>
+                                    <div class="col-lg-10">
+                                        <label class="switch switch-lg">
+                                            <input type="checkbox" ng-model="model.data.active">
+                                            <span></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading panel-heading-condensed">
+                                    <div class="box-menu-bar">
+                                        <div class="edit-image-wrapper">
+                                            <input type="file" class="image-file-field" name="background$" onchange="angular.element(this).scope().upload(this)">
+                                            <a title="Modifier le fond d'écran" class="edit-image-box" href="#">
+                                                <span class="icon-picture"></span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    Fond d'écran
+                                </div>
+                                <div class="panel-body">
+                                    <img src="{{ model.getBackgroundUrl() }}"
+                                         ng-show="model.getBackground()" class="img-responsive block-center">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </tab>
+                <tab>
+                    <tab-heading><i class="icon-plus"></i> Contenu extra</tab-heading>
+                    <div>
+                        <form class="form-horizontal">
+                            <div class="form-group">
+                                <textarea placeholder="Contenu" rows="15"
+                                          class="form-control" ng-model="model.data.content">
+                                </textarea>
+                            </div>
+                        </form>
+                    </div>
+                </tab>
+            </tabset>
+
+            <div class="form-group" class="mt">
+                <div class="col-sm-4 col-sm-offset-2">
+                    <a href="#/app/pages" class="btn btn-default">Annuler</a>
+                    <button class="btn btn-primary" type="submit" ng-click="save(profile);">Enregistrer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

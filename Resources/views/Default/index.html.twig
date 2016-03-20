@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" data-ng-app="angle">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title data-ng-bind="pageTitle()">Admin section</title>
+    <link rel="stylesheet" href="{{ asset('bundles/namiadmin/css/app.css') }}" data-ng-if="!app.layout.isRTL">
+    <link rel="stylesheet" href="{{ asset('bundles/namiadmin/css/app-rtl.css') }}" data-ng-if="app.layout.isRTL">
+    <link rel="stylesheet" href="{{ asset('bundles/namiadmin/css/main.css') }}">
+    <link rel="stylesheet" href="{{ asset('bundles/namiadmin/css/theme-g.css') }}">
+
+    <script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+    <script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+</head>
+
+<body data-ng-class="{ 'layout-fixed' : app.layout.isFixed, 'aside-collapsed' : app.layout.isCollapsed, 'layout-boxed' : app.layout.isBoxed }">
+   <div data-ui-view="" data-autoscroll="false" data-ng-class="mainViewAnimation" class="wrapper"></div>
+   {% javascripts
+    '@NamiAdminBundle/Resources/js/base.js'
+    '@NamiAdminBundle/Resources/js/app.init.js'
+    '@NamiAdminBundle/Resources/js/modules/tools/core.js'
+    '@NamiAdminBundle/Resources/js/modules/tools/*.js'
+    '@NamiAdminBundle/Resources/js/modules/models/*.js'
+    '@NamiAdminBundle/Resources/js/modules/collections/*.js'
+    '@NamiAdminBundle/Resources/js/modules/controllers/*.js'
+    '@NamiAdminBundle/Resources/js/modules/directives/*.js'
+    '@NamiAdminBundle/Resources/js/modules/services/*.js'
+    '@NamiAdminBundle/Resources/js/modules/filters/*.js'
+    '@NamiAdminBundle/Resources/js/modules/*.js'
+   %}
+    <script src="{{ asset_url }}"></script>
+{% endjavascripts %}
+</body>
+</html>

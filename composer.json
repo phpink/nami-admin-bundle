@@ -1,0 +1,20 @@
+{
+    "name": "phpink/nami-admin-bundle",
+    "description": "Nami CMS - Admin back-office bundle",
+    "license": "MIT",
+    "type": "symfony-bundle",
+    "keywords": ["Nami", "CMS", "Back-Office", "Admin", "Angular"],
+    "homepage": "http://nami.php.ink",
+    "require": {
+          "php": ">=5.4.0",
+          "phpink/nami-core-bundle": "*"
+    },
+    "autoload": {
+         "psr-4": { "PhpInk\\Nami\\AdminBundle\\": "" }
+    },
+      "extra": {
+            "branch-alias": {
+                  "dev-master": "0.1-dev"
+            }
+      }
+}

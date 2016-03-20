@@ -1,0 +1,30 @@
+{
+  "dashboard": {
+    "WELCOME": "Bienvenue sur {{appName}}"
+  },
+  "topbar": {
+    "messages": {
+      "UNREAD": "Messages non lus",
+      "MORE": "Plus de messages"
+    },
+    "search": {
+      "PLACEHOLDER": "Votre recherche..."
+    },
+    "notification": {
+      "MORE": "Plus de notifications"
+    }
+  },
+  "sidebar": {
+      "WELCOME": "Bienvenue",
+      "HEADER": "Menu",
+    
+    "nav": {
+        "dashboard": "Tableau de bord",
+        "configuration": "Configuration",
+        "manage": "Gérer",
+        "add": "Ajouter",
+        "users": "Users",
+        "pages": "Pages"
+    }
+  }
+}

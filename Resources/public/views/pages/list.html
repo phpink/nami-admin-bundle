@@ -1,0 +1,78 @@
+<h3>Gérer les collection</h3>
+<div class="panel panel-primary" ng-class="{csspinner:refreshing}">
+    <div class="panel-heading">
+        Pages
+        <paneltool class="pull-right" tool-refresh="refresh()"></paneltool>
+    </div>
+    <div class="panel-body">
+        <span class="label label-primary pull-right">{{ collection.getCount() }}</span>
+        <div class="row" style="margin-right:6px;margin-left:6px;margin-bottom:6px;">
+            <div class="col-lg-4">
+                <span>Pour la sélection</span>
+                <a ng-click="setActive(true)" href="#" class="btn btn-sm btn-success" style="margin-left:8px;">
+                    <span class="icon-refresh"></span> Activer
+                </a>
+                <a ng-click="setActive(false)" href="#" class="btn btn-sm btn-danger">
+                    <span class="icon-refresh"></span> Désactiver
+                </a>
+                <a ng-click="deleteItems()" href="#" class="btn btn-sm bg-danger-dark" style="margin-left:8px;">
+                    <span class="icon-trash"></span> Supprimer
+                </a>
+            </div>
+            <div class="col-lg-5"></div>
+            <div class="col-lg-3">
+                <div class="input-group pull-right">
+                    <input type="text" placeholder="Search" class="form-control"
+                           ng-keyup="filterUpdate('title', $event, 'like', true)" />
+                   <span class="input-group-btn">
+                      <button type="button" class="btn btn-sm btn-primary">Rechercher</button>
+                   </span>
+                </div>
+            </div>
+        </div>
+
+        <!-- START table-responsive-->
+        <div class="table-responsive">
+            <table id="page-table" class="table table-bordered table-hover">
+                <thead>
+                <tr>
+                    <th check-all="check-all">
+                        <div data-toggle="tooltip" data-title="Check All" class="checkbox c-checkbox">
+                            <label>
+                                <input type="checkbox" ng-click="toggleCheckAll()" />
+                                <span class="fa fa-check"></span>
+                            </label>
+                        </div>
+                    </th>
+                    <th>Titre</th>
+                    <th>Catégorie</th>
+                    <th>Activé</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="page in collection.getItems()">
+                    <td>
+                        <div class="checkbox c-checkbox">
+                            <label>
+                                <input type="checkbox" ng-model="selection[page.getId()]" />
+                                <span class="fa fa-check"></span>
+                            </label>
+                        </div>
+                    </td>
+                    <td><a href="#/app/pages/{{ page.getId() }}">{{ page.getTitle() }}</a></td>
+                    <td><a href="#/app/pages/{{ page.getId() }}">{{ page.getCategory().slug }}</a></td>
+                    <td><span class="label" ng-class="{'label-success': page.isActive(), 'label-danger': !page.isActive() }">{{ page.isActive() ? 'Oui' : 'Non' }}</span></td>
+                    <td class="text-right">
+                        <a href="#/app/pages/{{ page.getId() }}/edit" class="btn btn-xs btn-primary"><span class="icon-pencil"></span></a>
+                        <a href="#" ng-click="deleteItem(page)" class="btn btn-xs bg-danger-dark"><span class="icon-trash"></span></a>
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+        </div>
+
+        <div mlpagination></div>
+    </div>
+</div>

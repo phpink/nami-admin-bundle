@@ -1,0 +1,39 @@
+[
+  {
+    "text": "Main Navigation",
+    "heading": "true",
+    "translate": "sidebar.HEADER"
+  },
+  {
+    "text": "Dashboard",
+    "sref": "app.dashboard",
+    "icon": "icon-speedometer",
+    "translate": "sidebar.nav.dashboard"
+  },
+    {
+        "text": "Configuration",
+        "sref": "app.config",
+        "icon": "icon-settings",
+        "translate": "sidebar.nav.configuration"
+    },
+  {
+      "text": "Utilisateurs",
+      "sref": "#",
+      "icon": "fa fa-users",
+      "translate": "sidebar.nav.users",
+      "submenu": [
+        {"text": "Gérer", "sref": "app.users", "translate": "sidebar.nav.manage"},
+        {"text": "Ajouter", "sref": "app.user-new", "translate": "sidebar.nav.add"}
+      ]
+  },
+  {
+      "text": "Pages",
+      "sref": "#",
+      "icon": "icon-doc",
+      "translate": "sidebar.nav.pages",
+      "submenu": [
+          {"text": "Gérer", "sref": "app.pages", "translate": "sidebar.nav.manage"},
+          {"text": "Ajouter", "sref": "app.page-new", "translate": "sidebar.nav.add"}
+      ]
+  }
+]

@@ -1,0 +1,83 @@
+<div ng-show="model">
+    <h3><a href="#/app/users">Gérer les profils</a> > <a href="#/app/users/{{ model.id }}">{{ model.username }}</a></h3>
+    <div class="panel panel-primary" data-ng-init="refresh()" ng-class="{csspinner:refreshing}">
+        <div class="panel-heading">
+            <span ng-show="model.getId()">{{ model.getUsername() }}</span>
+            <span ng-hide="model.getId()">Nouveau profil</span>
+            <paneltool ng-show="model.getId()" class="pull-right" tool-refresh="refresh()"></paneltool>
+        </div>
+
+        <div class="panel-body">
+            <tabset>
+                <tab>
+                    <tab-heading><i class="icon-info"></i> Fiche d'identité</tab-heading>
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <form class="form-horizontal">
+                                <div class="form-group">
+                                    <label class="col-lg-2 control-label">Pseudo</label>
+                                    <div class="col-lg-10">
+                                        <input placeholder="Identifiant" class="form-control" type="text" ng-model="model.data.username">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-2 control-label">Prénom</label>
+                                    <div class="col-lg-10">
+                                        <input placeholder="Prénom" class="form-control" type="text" ng-model="model.data.firstName">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-2 control-label">Nom</label>
+                                    <div class="col-lg-10">
+                                        <input placeholder="Nom" class="form-control" type="text" ng-model="model.data.lastName">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-2 control-label">Homme</label>
+                                    <div class="col-lg-10">
+                                        <label class="switch switch-lg">
+                                            <input type="checkbox" ng-model="model.data.male">
+                                            <span></span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-lg-2 control-label">Actif</label>
+                                    <div class="col-lg-10">
+                                        <label class="switch switch-lg">
+                                            <input type="checkbox" ng-model="model.data.active">
+                                            <span></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="panel panel-primary">
+                                <div class="panel-heading panel-heading-condensed">
+                                    <div class="box-menu-bar">
+                                        <div class="edit-image-wrapper">
+                                            <input type="file" class="image-file-field" name="avatar" onchange="angular.element(this).scope().upload(this)">
+                                            <a title="Modifier l'image" class="edit-image-box" href="#"><span class="icon-picture"></span></a>
+                                        </div>
+                                    </div>
+                                    Avatar
+                                </div>
+                                <div class="panel-body">
+                                    <img src="{{ model.getAvatarThumb() }}" ng-show="model.getAvatar()" class="img-responsive block-center">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </tab>
+            </tabset>
+
+            <div class="form-group" style="margin-top: 10px;">
+                <div class="col-sm-4 col-sm-offset-2">
+                    <a href="#/app/users" class="btn btn-default">Annuler</a>
+                    <button class="btn btn-primary" type="submit" ng-click="save(model);">Enregistrer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

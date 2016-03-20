@@ -1,0 +1,16 @@
+<h3>Gérer la configuration</h3>
+<div class="panel panel-primary" ng-class="{csspinner:refreshing}">
+    <div class="panel-heading">
+        Paramètres
+        <paneltool class="pull-right" tool-refresh="refresh()"></paneltool>
+    </div>
+    <div class="panel-body">
+        <form class="form-horizontal">
+            <div class="form-group" ng-repeat="configuration in collection.elements">
+                <label class="col-lg-1 control-label">{{ configuration.data.name }}</label>
+                <div class="col-lg-11">
+                    <input placeholder="Valeur" class="form-control" type="text" ng-model="configuration.data.value" ng-change="update($index)">
+                </div>
+            </div>
+        </form>
+</div>

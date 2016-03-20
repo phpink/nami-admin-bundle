@@ -1,0 +1,11 @@
+<!-- top navbar-->
+<div ng-include="'/bundles/namiadmin/views/partials/top-navbar.html'"></div>
+<!-- sidebar-->
+<aside ng-include="'/bundles/namiadmin/views/partials/sidebar.html'" ng-controller="SidebarController" class="aside"></aside>
+<!-- Main section-->
+<section>
+   <!-- Page content-->
+   <div ui-view="" autoscroll="false" ng-class="app.viewAnimation" class="content-wrapper"></div>
+</section>
+<!-- Page footer-->
+<footer ng-include="'/bundles/namiadmin/views/partials/footer.html'"></footer>

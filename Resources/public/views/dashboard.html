@@ -1,0 +1,200 @@
+<h3>
+   <small>{{ 'dashboard.WELCOME' | translate:{ appName: app.name } }} !</small>
+</h3>
+<!-- START widgets box-->
+<div class="row hidden-xs" ng-show="mainStatistics">
+   <div class="col-lg-3 col-sm-6">
+      <!-- START widget-->
+      <div class="panel widget bg-primary">
+         <div class="row row-table">
+            <div class="col-xs-4 text-center bg-primary-dark pv-lg">
+               <em class="icon-doc fa-3x"></em>
+            </div>
+            <div class="col-xs-8 pv-lg">
+               <div class="h2 mt0">{{ mainStatistics.pages }}</div>
+               <div class="text-uppercase">Pages</div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <div class="col-lg-3 col-sm-6">
+      <!-- START widget-->
+      <div class="panel widget bg-purple">
+         <div class="row row-table">
+            <div class="col-xs-4 text-center bg-purple-dark pv-lg">
+               <em class="icon-users fa-3x"></em>
+            </div>
+            <div class="col-xs-8 pv-lg">
+               <div class="h2 mt0">{{ mainStatistics.users }}</div>
+               <div class="text-uppercase">Utilisateurs</div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <div class="col-lg-3 visible-lg-block">
+       <!-- START widget-->
+       <div class="panel widget bg-green">
+           <div class="row row-table">
+               <div class="col-xs-4 text-center bg-green-dark pv-lg">
+                   <em class="icon-clock fa-3x"></em>
+               </div>
+               <div class="col-xs-8 pv-lg">
+                   <div class="h2 mt0">
+                       {{ loggedUser.getLastLogin() | date:'d MMM' }}
+                       <sup class="text-sm">{{ loggedUser.getLastLogin() | date:'hh:mm' }}</sup>
+                   </div>
+                   <div class="text-uppercase">Last login</div>
+               </div>
+          </div>
+       </div>
+   </div>
+   <div class="col-lg-3 visible-lg-block">
+       <!-- START date widget-->
+       <div class="panel widget">
+           <div class="row row-table">
+               <div class="col-xs-4 text-center bg-green pv-lg">
+                   <!-- See formats: https://docs.angularjs.org/api/ng/filter/date-->
+                   <now format="MMMM" class="text-sm"></now>
+                   <br/>
+                   <now format="d" class="h2 mt0"></now>
+               </div>
+               <div class="col-xs-8 pv-lg">
+                   <now format="EEEE" class="text-uppercase"></now>
+                   <br/>
+                   <now format="hh:mm" class="h2 m0"></now>
+               </div>
+           </div>
+       </div>
+       <!-- END date widget    -->
+   </div>
+</div>
+<!-- END widgets box-->
+<div class="row">
+   <!-- START dashboard main content-->
+   <div class="col-lg-9">
+      <!-- START chart-->
+      <div class="row">
+         <div class="col-lg-12">
+            <!-- START widget-->
+            <div id="panelChart9" ng-controller="FlotChartController" class="panel panel-default">
+               <div class="panel-heading">
+                  <paneltool tool-collapse="tool-collapse" tool-refresh="traditional"></paneltool>
+                  <div class="panel-title">Google analytics</div>
+               </div>
+               <div collapse="panelChart9" class="panel-wrapper">
+                  <div class="panel-body">
+                     <div data-source="nami_api_get_analytics_page_views" class="chart-spline flot-chart"></div>
+                  </div>
+               </div>
+            </div>
+            <!-- END widget-->
+         </div>
+      </div>
+      <!-- END chart-->
+      <div class="row" ng-show="weatherData">
+         <div class="col-lg-12">
+            <div class="panel widget">
+               <div class="row row-table">
+                  <div class="col-md-2 col-sm-3 col-xs-6 text-center bg-info pv-xl">
+                     <!-- Allowed types-->
+                     <!-- "clear-day", "clear-night", "partly-cloudy-day", "partly-cloudy-night", "cloudy", "rain", "sleet", "snow", "wind", "fog"-->
+                     <div skycon="{{weatherData[0].icon.big}}" width="80" height="80"></div>
+                  </div>
+                  <div class="col-md-2 col-sm-3 col-xs-6 pv text-center br">
+                     <div class="h1 m0 text-bold">
+                         {{ weatherData[0].temp }}
+                         <em class="wi wi-celsius"></em>
+                     </div>
+                     <div class="text-uppercase">{{ weatherData[0].text }}</div>
+                  </div>
+                  <div class="col-md-2 col-sm-3 hidden-xs pv text-center br">
+                     <div class="text-info text-sm">Tomorrow</div>
+                     <div class="text-muted text-md">
+                        <em class="wi wi-{{ weatherData[1].icon.small }}"></em>
+                     </div>
+                      <div class="text-info pull-left">
+                          <em class="wi wi-thermometer-internal"></em>
+                          <span class="text-muted">{{ weatherData[1].temp }}</span>
+                          <em class="wi wi-celsius"></em>
+                      </div>
+                     <div class="text-info pull-right">
+                        <em class="wi wi-sprinkles"></em>
+                        <span class="text-muted">{{ weatherData[1].humidity }}%</span>
+                     </div>
+                  </div>
+                  <div class="col-md-2 col-sm-3 hidden-xs pv text-center br">
+                     <div class="text-info text-sm">+2 days</div>
+                     <div class="text-muted text-md">
+                        <em class="wi wi-{{ weatherData[2].icon.small }}"></em>
+                     </div>
+                     <div class="text-info pull-left">
+                        <em class="wi wi-sprinkles"></em>
+                        <span class="text-muted">{{ weatherData[2].humidity }}%</span>
+                     </div>
+                      <div class="text-info pull-right">
+                          <em class="wi wi-thermometer-internal"></em>
+                          <span class="text-muted">{{ weatherData[2].temp }}</span>
+                          <em class="wi wi-celsius"></em>
+                      </div>
+                  </div>
+                  <div class="col-md-2 hidden-sm hidden-xs pv text-center br">
+                     <div class="text-info text-sm">+3 days</div>
+                     <div class="text-muted text-md">
+                        <em class="wi wi-{{ weatherData[3].icon.small }}"></em>
+                     </div>
+                     <div class="text-info pull-left">
+                        <em class="wi wi-sprinkles"></em>
+                        <span class="text-muted">{{ weatherData[3].humidity }}%</span>
+                     </div>
+                      <div class="text-info pull-right">
+                          <em class="wi wi-thermometer-internal"></em>
+                          <span class="text-muted">{{ weatherData[3].temp }}</span>
+                          <em class="wi wi-celsius"></em>
+                      </div>
+                  </div>
+                  <div class="col-md-2 hidden-sm hidden-xs pv text-center">
+                     <div class="text-info text-sm">+4 days</div>
+                     <div class="text-muted text-md">
+                        <em class="wi wi-{{ weatherData[2].icon.small }}"></em>
+                     </div>
+                     <div class="text-info pull-left">
+                        <em class="wi wi-sprinkles"></em>
+                        <span class="text-muted">{{ weatherData[4].humidity }}%</span>
+                     </div>
+                      <div class="text-info pull-right">
+                          <em class="wi wi-thermometer-internal"></em>
+                        <span class="text-muted">{{ weatherData[4].temp }}</span>
+                        <em class="wi wi-celsius"></em>
+                      </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+       <!-- END dashboard main content-->
+    </div>
+    <!-- START dashboard sidebar-->
+    <aside class="col-lg-3">
+      <!-- START loader widget-->
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <a href="#" class="text-muted pull-right">
+            <em class="fa fa-arrow-right"></em>
+          </a>
+          <div class="text-info">Espace disque</div>
+          <canvas classyloader="" data-percentage="70" data-speed="20" data-font-size="40px" data-diameter="70" data-line-color="{{colorByName('info')}}" data-remaining-line-color="rgba(200,200,200,0.4)" data-line-width="10"
+                  data-rounded-line="true" class="center-block"></canvas>
+          <div sparkline="" data-bar-color="{{colorByName('info')}}" data-height="30" data-bar-width="5" data-bar-spacing="2" class="text-center">5,4,8,7,8,5,4,6,5,5,9,4,6,3,4,7,5,4,7</div>
+        </div>
+        <div class="panel-footer">
+          <p class="text-muted">
+            <em class="fa fa-upload fa-fw"></em>
+            <span>Taille du dossier</span>
+            <span class="text-dark">{{ mainStatistics.appSize }} Mb</span>
+          </p>
+        </div>
+      </div>
+      <!-- END loader widget-->
+    </aside>
+    <!-- END dashboard sidebar-->
+</div>

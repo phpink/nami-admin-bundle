@@ -1,0 +1,8 @@
+nami_admin_dashboard:
+    path:     /
+    defaults: { _controller: NamiAdminBundle:Default:index }
+    requirements:
+        _method:  GET
+
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
