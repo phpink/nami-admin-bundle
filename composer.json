@@ -7,14 +7,15 @@
     "homepage": "http://nami.php.ink",
     "require": {
           "php": ">=5.4.0",
-          "phpink/nami-core-bundle": "*"
+          "phpink/nami-core-bundle": "*",
+          "friendsofsymfony/jsrouting-bundle": "*"
     },
     "autoload": {
          "psr-4": { "PhpInk\\Nami\\AdminBundle\\": "" }
     },
-      "extra": {
-            "branch-alias": {
-                  "dev-master": "0.1-dev"
-            }
-      }
+    "extra": {
+          "branch-alias": {
+                "dev-master": "0.1-dev"
+          }
+    }
 }
