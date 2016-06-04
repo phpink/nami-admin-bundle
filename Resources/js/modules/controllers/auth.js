@@ -28,5 +28,19 @@ App.controller('AuthController', ['$rootScope', '$scope', '$location', 'UserMode
             }, function(response) {
 
             });
-    }
+    };
+
+    $scope.result = {};
+    $scope.recover = function(user) {
+        var userModel = new UserModel();
+        userModel
+            .reset(user.login)
+            .then(function(data) {
+                $scope.result = data;
+                console.log(data);
+
+            }, function(response) {
+                console.log(response);
+            });
+    };
 }]);

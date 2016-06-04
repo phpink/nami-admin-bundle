@@ -1,0 +1,44 @@
+<div ng-show="model">
+    <h3><a href="#/app/menu">Gérer les liens de menu</a> > <a href="#/app/menu/{{ model.getId() }}">{{ model.getName() }}</a></h3>
+    <div class="panel panel-primary" data-ng-init="refresh()" ng-class="{csspinner:refreshing}">
+        <div class="panel-heading">
+            <span ng-show="model.getId()">{{ model.getName() }}</span>
+            <span ng-hide="model.getId()">Nouveau lien</span>
+            <paneltool ng-show="model.getId()" class="pull-right" tool-refresh="refresh()"></paneltool>
+        </div>
+
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-sm-12">
+                    <form class="form-horizontal">
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">Nom</label>
+                            <div class="col-lg-10">
+                                <input placeholder="Titre" class="form-control" type="text" ng-model="model.data.name">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">Url</label>
+                            <div class="col-lg-10">
+                                <input placeholder="Url" class="form-control" type="text" ng-model="model.data.link">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-lg-2 control-label">Titre</label>
+                            <div class="col-lg-10">
+                                <input placeholder="Description" class="form-control" type="text" ng-model="model.data.title">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="form-group" class="mt">
+                <div class="col-sm-4 col-sm-offset-2">
+                    <a href="#/app/menu" class="btn btn-default">Annuler</a>
+                    <button class="btn btn-primary" type="submit" ng-click="save();">Enregistrer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

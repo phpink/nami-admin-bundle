@@ -10,21 +10,31 @@
     "icon": "icon-speedometer",
     "translate": "sidebar.nav.dashboard"
   },
-    {
-        "text": "Configuration",
-        "sref": "app.config",
-        "icon": "icon-settings",
-        "translate": "sidebar.nav.configuration"
-    },
   {
-      "text": "Utilisateurs",
-      "sref": "#",
-      "icon": "fa fa-users",
-      "translate": "sidebar.nav.users",
-      "submenu": [
-        {"text": "Gérer", "sref": "app.users", "translate": "sidebar.nav.manage"},
-        {"text": "Ajouter", "sref": "app.user-new", "translate": "sidebar.nav.add"}
-      ]
+      "text": "Configuration",
+      "sref": "app.config",
+      "icon": "icon-settings",
+      "translate": "sidebar.nav.configuration"
+  },
+  {
+    "text": "Menu",
+    "sref": "#",
+    "icon": "icon-list",
+    "translate": "sidebar.nav.menu",
+    "submenu": [
+      {"text": "Gérer", "sref": "app.menulinks", "translate": "sidebar.nav.manage"},
+      {"text": "Ajouter", "sref": "app.menulink-new", "translate": "sidebar.nav.add"}
+    ]
+  },
+  {
+    "text": "Catégories",
+    "sref": "#",
+    "icon": "icon-tag",
+    "translate": "sidebar.nav.categories",
+    "submenu": [
+      {"text": "Gérer", "sref": "app.categories", "translate": "sidebar.nav.manage"},
+      {"text": "Ajouter", "sref": "app.category-new", "translate": "sidebar.nav.add"}
+    ]
   },
   {
       "text": "Pages",
@@ -35,5 +45,15 @@
           {"text": "Gérer", "sref": "app.pages", "translate": "sidebar.nav.manage"},
           {"text": "Ajouter", "sref": "app.page-new", "translate": "sidebar.nav.add"}
       ]
+  },
+  {
+    "text": "Utilisateurs",
+    "sref": "#",
+    "icon": "fa fa-users",
+    "translate": "sidebar.nav.users",
+    "submenu": [
+      {"text": "Gérer", "sref": "app.users", "translate": "sidebar.nav.manage"},
+      {"text": "Ajouter", "sref": "app.user-new", "translate": "sidebar.nav.add"}
+    ]
   }
 ]

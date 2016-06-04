@@ -1,0 +1,35 @@
+<h3>Gérer les menus</h3>
+<div class="panel panel-primary" ng-class="{csspinner:refreshing}">
+    <div class="panel-heading">
+        Liens
+        <paneltool class="pull-right" tool-refresh="refresh()"></paneltool>
+    </div>
+    <div class="panel-body">
+        <span class="label label-primary pull-right">{{ collection.getCount() }}</span>
+
+        <!-- START table-responsive-->
+        <div class="floatleft">
+            <tg-dynamic-directive ng-model="rootItem" tg-dynamic-directive-view="getView">
+            </tg-dynamic-directive>
+            <div class="clear: both;"></div>
+        </div>
+
+        <div class="floatright">
+            <p>{{items}}</p>
+        </div>
+
+        <div class="cleared"></div>
+
+        <script type="text/ng-template" id="nestable_item.html">
+            <div>
+                {{ngModelItem.title}}
+                <ul class="tree-container" ui-sortable="sortableOptions" ng-model="ngModelItem.items">
+                    <li class="innerCont" ng-repeat="innerItem in ngModelItem.collection">
+                        <tg-dynamic-directive ng-model="innerItem" tg-dynamic-directive-view="getView">
+                        </tg-dynamic-directive>
+                    </li>
+                </ul>
+            </div>
+        </script>
+    </div>
+</div>

@@ -1,0 +1,44 @@
+<h3><a href="#/app/pages">Gérer les liens de menu</a></h3>
+<div class="panel panel-primary" ng-class="{csspinner:refreshing}">
+    <div class="panel-heading">
+        {{ model.getName() }}
+        <paneltool class="pull-right" tool-refresh="refresh()"></paneltool>
+    </div>
+
+    <div class="panel-body">
+        <a class="btn btn-sm bg-danger-dark" style="float:right;" href="#"><span class="icon-trash"></span> Supprimer</a>
+        <a class="btn btn-sm btn-primary" style="float:right;margin-right:6px;" href="#/app/menu/{{ model.getId() }}/edit"><span class="icon-pencil"></span> Modifier</a>
+        <tabset>
+            <tab select="refresh()">
+                <tab-heading><i class="icon-info"></i> Fiche d'identité</tab-heading>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <table class="table table-striped key-value-table">
+                            <tbody>
+                            <tr>
+                                <td>Identifiant</td>
+                                <td>{{ model.getId() }}</td>
+                            </tr>
+                            <tr>
+                                <td>Nom</td>
+                                <td>{{ model.getName() }}</td>
+                            </tr>
+                            <tr>
+                                <td>Titre</td>
+                                <td>{{ model.getTitle() }}</td>
+                            </tr>
+                            <tr>
+                                <td>Lien</td>
+                                <td>{{ model.getLink() }}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+            </tab>
+        </tabset>
+    </div>
+</div>

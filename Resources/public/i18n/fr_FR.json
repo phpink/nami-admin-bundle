@@ -24,7 +24,9 @@
         "manage": "Gérer",
         "add": "Ajouter",
         "users": "Users",
-        "pages": "Pages"
+        "menu": "Menu",
+        "pages": "Pages",
+        "categories": "Catégories"
     }
   }
 }

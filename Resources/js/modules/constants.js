@@ -60,7 +60,9 @@ App
       'parsley':            [App.path + '/vendor/parsley/parsley.min.js'],
       'datatables':         [App.path + '/vendor/datatable/media/js/jquery.dataTables.min.js', App.path + '/vendor/datatable/extensions/datatable-bootstrap/css/dataTables.bootstrap.css'],
       'datatables-pugins':  [App.path + '/vendor/datatable/extensions/datatable-bootstrap/js/dataTables.bootstrap.js', App.path + '/vendor/datatable/extensions/datatable-bootstrap/js/dataTables.bootstrapPagination.js', App.path + '/vendor/datatable/extensions/ColVis/js/dataTables.colVis.min.js', App.path + '/vendor/datatable/extensions/ColVis/css/dataTables.colVis.css'],
-      'flatdoc':            [App.path + '/vendor/flatdoc/flatdoc.js']
+      'flatdoc':            [App.path + '/vendor/flatdoc/flatdoc.js'],
+      'ui.sortable':        [App.path + '/vendor/sortable/sortable.js'],
+      'tg.dynamicDirective':  [App.path + '/vendor/tg.dynamic.directive/tg.dynamic.directive.js']
     },
     modules: [
       {

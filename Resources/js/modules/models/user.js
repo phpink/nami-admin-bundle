@@ -106,6 +106,27 @@ App.factory('UserModel',
                 deferred.reject();
             });
             return deferred.promise;
+        },
+
+        reset: function(username) {
+            var deferred = $q.defer();
+            $http({
+                method: 'GET',
+                url: Routing.generate('nami_api_get_user_reset'),
+                data: {
+                    username: username
+                }
+            }).success(function(data, status, headers, config) {
+                if (status === 200) {
+                    deferred.resolve(data);
+                } else {
+                    deferred.reject();
+                }
+
+            }).error(function(data, status, headers, config) {
+                deferred.reject();
+            });
+            return deferred.promise;
         }
     });
     return UserModel;

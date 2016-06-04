@@ -5,11 +5,21 @@
 
 App.controller('ModelController', [
     '$rootScope', '$scope', '$stateParams', '$location', '$cacheFactory',
-    '$modal', 'cfpLoadingBar', 'UserModel', 'PageModel',
+    '$modal', 'cfpLoadingBar', 'UserModel', 'PageModel', 'MenuModel', 'CategoryModel', 'CategoryCollection',
     function($rootScope, $scope, $stateParams, $location, $cacheFactory,
-             $modal, cfpLoadingBar, UserModel, PageModel) {
+             $modal, cfpLoadingBar, UserModel, PageModel, MenuModel, CategoryModel, CategoryCollection) {
         "use strict";
         var controllers = {
+            'menu': {
+                model: MenuModel
+            },
+            'categories': {
+                model: CategoryModel,
+                onFetch: function() {
+                    $scope.categories = new CategoryCollection();
+                    $scope.categories.fetch();
+                }
+            },
             'pages': {
                 model: PageModel,
                 onFetch: function() {
@@ -30,7 +40,9 @@ App.controller('ModelController', [
                 }
             }
         };
-        var currentRoute = $location.path().split('/')[2];
+        var routeParts = $location.path().split('/');
+        var currentRoute = routeParts[2];
+        var currentAction = routeParts.length === 5 ? routeParts[4] : 'view';
         var controller = controllers[currentRoute]
         var model = controller.model;
 
@@ -46,7 +58,7 @@ App.controller('ModelController', [
 
                 $scope.model.setId($stateParams.id);
                 $scope.model.fetch().then(function() {
-                    if (angular.isFunction(controller.onFetch)) {
+                    if (angular.isFunction(controller.onFetch) && currentAction === 'edit') {
                         controller.onFetch();
                     }
                 }).finally(function() {
@@ -76,7 +88,7 @@ App.controller('ModelController', [
           }
         };
 
-        $scope.save = function(page) {
+        $scope.save = function() {
             cfpLoadingBar.start();
             $scope.refreshing = true;
 

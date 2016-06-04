@@ -52,3 +52,55 @@
 .mt {
     margin-top: 10px;
 }
+
+
+/***  Extra ***/
+
+body {
+    font-family: Verdana, 'Trebuchet ms', Tahoma;
+}
+
+/** Tree */
+
+
+.tree-container {
+    border: 1px dashed blue;
+    padding-bottom: 10px;
+}
+.list {
+    list-style: none outside none;
+    margin: 10px 0 30px;
+}
+.logList {
+    margin-top: 20px;
+    width: 300px;
+    min-height: 300px;
+    padding: 5px 15px;
+    border: 5px solid #000;
+    border-radius: 15px;
+}
+
+.logItem {
+    margin-bottom: 10px;
+}
+
+.logList:before {
+    content: 'log';
+    padding: 0 5px;
+    position: relative;
+    top: -1.1em;
+    background-color: #FFF;
+}
+
+.floatleft {
+    float: left;
+}
+
+.floatright {
+    float: right;
+}
+
+
+tg-dynamic-directive {
+    display: block;
+}

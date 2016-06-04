@@ -4,12 +4,13 @@
  =========================================================*/
 
 App.controller('CollectionController',
-  ['$scope', '$translate', '$location', 'paginator',
-   'cfpLoadingBar', 'UserCollection', 'PageCollection',
+  ['$scope', '$translate', '$location', 'paginator', 'cfpLoadingBar',
+    'UserCollection', 'PageCollection', 'CategoryCollection',
     '$http', '$q',
   function(
       $scope, $translate, $location, paginator, cfpLoadingBar,
-      UserCollection, PageCollection, $http, $q
+      UserCollection, PageCollection, CategoryCollection,
+      $http, $q
   ) {
     "use strict";
 
@@ -19,6 +20,9 @@ App.controller('CollectionController',
       },
       'users': {
         collection: UserCollection
+      },
+      'categories': {
+        collection: CategoryCollection
       }
     };
     var currentRoute = $location.path().split('/')[2];

@@ -53,6 +53,8 @@ App.config(['$stateProvider','$urlRouterProvider', '$controllerProvider', '$comp
                 templateUrl: basepath('configuration/list.html'),
                 controller: 'ConfigurationController'
             })
+                
+            // USERS
             .state('app.users', {
                 url: '/users',
                 title: 'Users',
@@ -77,6 +79,8 @@ App.config(['$stateProvider','$urlRouterProvider', '$controllerProvider', '$comp
                 templateUrl: basepath('users/edit.html'),
                 controller: 'ModelController'
             })
+            
+            // PAGES
             .state('app.pages', {
                 url: '/pages',
                 title: 'Pages',
@@ -102,6 +106,62 @@ App.config(['$stateProvider','$urlRouterProvider', '$controllerProvider', '$comp
                 controller: 'ModelController',
                 resolve: resolveFor('ngWig')
             })
+            
+            // CATEGORIES
+
+            .state('app.categories', {
+                url: '/categories',
+                title: 'Pages',
+                templateUrl: basepath('categories/list.html'),
+                controller: 'CollectionController'
+            })
+            .state('app.category-new', {
+                url: '/categories/new',
+                title: 'New category',
+                templateUrl: basepath('categories/edit.html'),
+                controller: 'ModelController'
+            })
+            .state('app.category', {
+                url: '/categories/:id',
+                title: 'Page details',
+                templateUrl: basepath('categories/view.html'),
+                controller: 'ModelController'
+            })
+            .state('app.category-edit', {
+                url: '/categories/:id/edit',
+                title: 'Edit category',
+                templateUrl: basepath('categories/edit.html'),
+                controller: 'ModelController',
+                resolve: resolveFor('ngWig')
+            })
+            
+            // MENU
+            .state('app.menulinks', {
+                url: '/menu',
+                title: 'Menu',
+                templateUrl: basepath('menu/list.html'),
+                controller: 'MenuController'
+                //resolve: resolveFor('ui.sortable', 'tg.dynamicDirective')
+            })
+            .state('app.menulink-new', {
+                url: '/menu/new',
+                title: 'New menu link',
+                templateUrl: basepath('menu/edit.html'),
+                controller: 'ModelController'
+            })
+            .state('app.menulink', {
+                url: '/menu/:id',
+                title: 'Menu link details',
+                templateUrl: basepath('menu/view.html'),
+                controller: 'ModelController'
+            })
+            .state('app.menulink-edit', {
+                url: '/menu/:id/edit',
+                title: 'Edit menu link',
+                templateUrl: basepath('menu/edit.html'),
+                controller: 'ModelController',
+                resolve: resolveFor('ngWig')
+            })
 
             //
             // Single Page Routes
@@ -115,6 +175,12 @@ App.config(['$stateProvider','$urlRouterProvider', '$controllerProvider', '$comp
                 url: '/login',
                 title: "Login",
                 templateUrl: App.path + '/pages/login.html',
+                controller: 'AuthController'
+            })
+            .state('page.recover', {
+                url: '/recover',
+                title: "Recover password",
+                templateUrl: App.path + '/pages/recover.html',
                 controller: 'AuthController'
             });
 
